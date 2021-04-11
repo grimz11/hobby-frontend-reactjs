@@ -26,10 +26,8 @@ import CatResponseDTO, {
 } from "../../services/catCollection/dto/catResponseDto";
 import CatCollectionStore from "../../stores/catCollectionStore";
 import { useHistory } from "react-router-dom";
-import { confirm, success } from "../Modal";
 import AppConsts from "../../utils/appconst";
 import ImageUploader from "react-images-upload";
-import axios from "axios";
 interface ILocalProps {
   catCollectionStore?: CatCollectionStore;
   data: any;
@@ -44,7 +42,6 @@ const CatDetail = inject(Stores.CatCollectionStore)(
     const [updateState, setUpdateState] = useState(false);
     const [inputEl, setInputEl] = useState(false);
     const [image, setImage] = React.useState("");
-    const [imageChanged, setImageChanged] = React.useState(false);
 
     const createState = data === null && id === "create";
     let inputRef: any = useRef();
@@ -60,49 +57,27 @@ const CatDetail = inject(Stores.CatCollectionStore)(
       setUpdateState(!updateState);
     };
 
-    console.log("values", data);
-    const handleSaveClick = () => {
-      const formData = new FormData();
-      formData.append("files", image);
+    const handleSaveClick = async () => {
+      const data = new FormData();
+      form.validateFields().then(async (values: CatResponseDTO) => {
+        data.append("photo", image);
+        data.append("name", values.name);
+        data.append("age", values.age.toString());
+        data.append("breed", values.breed);
+        data.append("description", values.description);
+        data.append("status", CatStatus.PUBLISHED);
 
-      if (createState) {
-        form.validateFields().then(async (values) => {
-          console.log("photo", values.photo);
-          console.log("form", image);
-          console.log("formData", formData);
-          const payload: CatResponseDTO = {
-            age: values.age,
-            name: values.name,
-            description: values.description,
-            breed: values.breed,
-            photo: formData,
-            status: CatStatus.PUBLISHED,
-          };
-          await catCollectionStore?.createCat(payload);
-          setUpdateState(!updateState);
-          if (catCollectionStore?.$catsData) {
-            history.push("/home");
-          }
-        });
-        return;
-      } else {
-        form.validateFields().then(async (values) => {
-          const payload: CatResponseDTO = {
-            age: values.age,
-            name: values.name,
-            description: values.description,
-            breed: values.breed,
-            photo: "",
-            status: CatStatus.PUBLISHED,
-          };
-          await catCollectionStore?.updateCat(id, payload);
-          setUpdateState(!updateState);
-          if (catCollectionStore?.$cat) {
-            history.push("/home");
-          }
-        });
-        return;
-      }
+        if (createState) {
+          await catCollectionStore?.createCat(data);
+        } else {
+          await catCollectionStore?.updateCat(id, data);
+        }
+
+        setUpdateState(!updateState);
+        if (catCollectionStore?.$cat || catCollectionStore?.$catsData) {
+          history.push("/home");
+        }
+      });
     };
 
     const handleDelete = () => {
@@ -117,21 +92,6 @@ const CatDetail = inject(Stores.CatCollectionStore)(
         },
         cancelText: "No",
       });
-    };
-    const uploadImage = async () => {
-      const formData = new FormData();
-      formData.append("photo", image);
-      // formData.append("ref", "user");
-      // formData.append("refId", utils.getCookie("id"));
-      // formData.append("field", "avatar");
-      // formData.append("source", "users-permissions");
-    };
-
-    const onChangeAvatar = async (file: any, localAvatar: any) => {
-      document.querySelector(".avatar")?.setAttribute("src", localAvatar[0]);
-      setImage(file[0].files);
-      console.log("file", file[0].files);
-      setImageChanged(true);
     };
 
     return (
@@ -205,6 +165,7 @@ const CatDetail = inject(Stores.CatCollectionStore)(
                         inputRef.current = el;
                         setInputEl(!!el);
                       }}
+                      placeholder="Name"
                       className="title"
                       name={data?.name}
                       disabled={(!updateState && !createState) ?? false}
@@ -212,6 +173,7 @@ const CatDetail = inject(Stores.CatCollectionStore)(
                   </Form.Item>
                   <Form.Item name="breed" rules={[{ required: true }]}>
                     <Input
+                      placeholder="Breed"
                       name={data?.breed}
                       disabled={(!updateState && !createState) ?? false}
                     />
@@ -221,15 +183,24 @@ const CatDetail = inject(Stores.CatCollectionStore)(
                     rules={[{ required: true, type: "number" }]}
                   >
                     <InputNumber
+                      placeholder="Age"
                       style={{ width: "100%" }}
                       name={data?.age}
+                      disabled={(!updateState && !createState) ?? false}
+                    />
+                  </Form.Item>
+                  <Form.Item name="description" rules={[{ required: true }]}>
+                    <Input.TextArea
+                      placeholder="Description"
+                      name={data?.description}
+                      autoSize
                       disabled={(!updateState && !createState) ?? false}
                     />
                   </Form.Item>
                 </div>
                 <div className="cat-img">
                   <Form.Item name="photo" rules={[{ required: true }]}>
-                    {data?.photo ? (
+                    {data?.photo && !updateState ? (
                       <Image
                         className="avatar"
                         src={`${AppConsts.appBaseUrl}/${data?.photo}`}
@@ -245,7 +216,7 @@ const CatDetail = inject(Stores.CatCollectionStore)(
                           withIcon={false}
                           maxFileSize={5242880}
                           imgExtension={[".jpg", ".gif", ".png", ".gif"]}
-                          onChange={onChangeAvatar}
+                          onChange={(file: any) => setImage(file[0])}
                           label="Max file size: 5mb, accepted: jpg | gif | png "
                           singleImage={true}
                           withPreview
@@ -255,14 +226,6 @@ const CatDetail = inject(Stores.CatCollectionStore)(
                   </Form.Item>
                 </div>
               </div>
-
-              <Form.Item name="description" rules={[{ required: true }]}>
-                <Input.TextArea
-                  name={data?.description}
-                  autoSize
-                  disabled={(!updateState && !createState) ?? false}
-                />
-              </Form.Item>
             </Form>
           </Card>
         </Col>

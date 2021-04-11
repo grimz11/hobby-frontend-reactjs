@@ -25,8 +25,8 @@ class CatCollectionStore {
     this.$cat = res;
   }
 
-  async createCat(payload: CatResponseDTO): Promise<void> {
-    const res = await catCollectionService.createCat<CatRequestDTO>(payload);
+  async createCat(payload: any): Promise<void> {
+    const res = await catCollectionService.createCat<any>(payload);
     this.$catsData = res;
   }
 
@@ -34,11 +34,8 @@ class CatCollectionStore {
     await catCollectionService.deleteCat(id);
   }
 
-  async updateCat(id: number, payload: CatRequestDTO): Promise<void> {
-    const res = await catCollectionService.updateCat<CatRequestDTO>(
-      id,
-      payload,
-    );
+  async updateCat(id: number, payload: any): Promise<void> {
+    const res = await catCollectionService.updateCat<any>(id, payload);
     this.$cat = res;
   }
 

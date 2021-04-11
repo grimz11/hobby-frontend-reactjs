@@ -17,7 +17,7 @@ const HomeHeader = () => {
         <header>
           <span>
             <Avatar
-              size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 100, xxl: 100 }}
+              size={{ xs: 90, sm: 90, md: 100, lg: 100, xl: 100, xxl: 100 }}
               src="http://www.freshboo.com/wp-content/uploads/2014/05/two-kissing-cats-wallpaper.jpg"
               alt="cats"
             />

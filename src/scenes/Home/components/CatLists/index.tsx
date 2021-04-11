@@ -23,22 +23,34 @@ const CatLists = inject(Stores.CatCollectionStore)(
     const matchedLocation = location.pathname.includes("/cat");
 
     return (
-      <Row gutter={16} style={{ marginTop: "40px" }}>
-        <Col span={8}>
+      <Row
+        gutter={[
+          { xs: 0, sm: 0, md: 16 },
+          { xs: 24, sm: 12, md: 16 },
+        ]}
+        style={{ marginTop: "40px" }}
+      >
+        <Col xs={24} md={12} lg={8} xl={6}>
           <Link to={`cat/create`}>
             <Card
               title="Add Cat"
               className="add-cat"
               hoverable
               size="default"
-              // cover={<PlusOutlined style={{ fontSize: "150px" }} />}
-              cover={<PlusCircleOutlined style={{ fontSize: "150px" }} />}
+              cover={<PlusCircleOutlined style={{ fontSize: "120px" }} />}
             />
           </Link>
         </Col>
         {data.map((item: CatDTO) => {
           return (
-            <Col span={8} key={`cat-${item.id}`} className="cat-card-inHome">
+            <Col
+              sm={24}
+              md={12}
+              lg={8}
+              xl={6}
+              key={`cat-${item.id}`}
+              className="cat-card-inHome"
+            >
               {matchedLocation && (
                 <span onClick={() => history.push("/home")} className="back">
                   Back

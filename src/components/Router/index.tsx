@@ -1,6 +1,5 @@
 import { Route, Switch } from "react-router-dom";
 
-import ProtectedRoute from "./ProtectedRoute";
 import utils from "../../utils/utils";
 
 const Router = () => {

@@ -13,8 +13,31 @@ header {
     margin: 0;
     padding: 0;
   }
-  p{
+  p {
     font-size: 1.25em;
     letter-spacing: 1.5px;
+  }
+
+
+
+  @media (min-width: 0) and (max-width: 343px) {
+    h1 {
+      font-size: 2em;
+    }
+    p {
+      font-size: 1em;
+    }
+  }
+}
+
+@media (min-width: 343px) and (max-width: 767px) {
+  header {
+    width: 95%;
+  }
+}
+
+@media (min-width: 0) and (max-width: 343px) {
+  header {
+    width: 100%;
   }
 }
