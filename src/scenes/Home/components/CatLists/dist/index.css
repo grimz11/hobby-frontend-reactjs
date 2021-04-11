@@ -1,0 +1,22 @@
+.catCard {
+  margin: auto;
+}
+.cat-card-inHome {
+  max-height: 383.51;
+  margin-bottom: 40px;
+}
+.add-cat {
+  background-color: #82588f;
+  color: #d27185;
+  border: 0px;
+  height: 350px;
+}
+.add-cat .ant-card-head {
+  border: 0;
+  font-size: 35px;
+  color: #d27185;
+  font-weight: 600;
+  text-align: center;
+  padding-top: 30px;
+  letter-spacing: 1.5px;
+}

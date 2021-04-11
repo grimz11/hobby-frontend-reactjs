@@ -1,0 +1,57 @@
+.cat-parent {
+  width: 70%;
+  display: block;
+  margin: 70px auto;
+  border-radius: 10px;
+}
+.cat-parent .back {
+  color: white;
+  cursor: pointer;
+  font-size: 20px;
+  text-align: right !important;
+  margin-bottom: 10px;
+  margin-right: 2px;
+  letter-spacing: 1.5px;
+  text-decoration: underline;
+}
+.cat-parent .back:hover {
+  color: #51b3f1;
+}
+.cat-parent .ant-btn {
+  width: 200px;
+  height: 50px;
+  color: #fff;
+  border-radius: 5px;
+}
+.cat-parent .ant-card-actions {
+  padding: 15px;
+}
+.cat-parent .primary {
+  background-color: #51b3f1;
+}
+.cat-parent .danger {
+  background-color: #df7583;
+}
+.cat-parent .cat-form-parent {
+  margin: 15px 25px;
+}
+.cat-parent .cat-form-parent .cat-form-info {
+  display: flex;
+}
+.cat-parent .cat-form-parent .cat-form-info .cat-left-input {
+  width: 70%;
+}
+.cat-parent .cat-form-parent .cat-form-info .title {
+  font-size: 3em;
+  font-weight: 900;
+}
+.cat-parent .cat-form-parent .cat-form-info .cat-img {
+  margin-left: auto;
+}
+.cat-parent .cat-form-parent .cat-form-info .cat-img img {
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  height: 250px;
+  width: 250px;
+  object-fit: cover;
+}

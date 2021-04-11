@@ -1,0 +1,50 @@
+.site-layout-content {
+  background-color: unset;
+
+  .search-cat {
+    margin-bottom: 40px;
+    width: 25%;
+    display: flex;
+    margin-left: auto;
+    
+    .anticon-sort-ascending {
+      align-self: center;
+      color: rgba(255,255,255, 0.6);
+      margin-left: 5px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    input {
+      border-width: 0 0 1px 0;
+      background-color: transparent;
+      color: #fff;
+
+
+    }
+    input:focus {
+        outline: 0 !important;
+        box-shadow: none !important;
+        border-right-width: 0px !important;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    
+    .ant-input-group-addon {
+      background-color: transparent;
+
+      button {
+        background-color: transparent;
+        border: unset;
+
+        svg {
+          color: #fff;
+        }
+      }
+    }
+  }
+}
