@@ -5,9 +5,7 @@ import * as React from "react";
 import { Avatar, Button, Col, Row } from "antd";
 
 import { Link } from "react-router-dom";
-import error401 from "../../assets/images/401.png";
 import error404 from "../../assets/images/404.png";
-import error500 from "../../assets/images/500.png";
 
 class Exception extends React.Component<any, any> {
   public render() {
@@ -17,20 +15,11 @@ class Exception extends React.Component<any, any> {
         errorImg: error404,
         errorDescription: "Sorry, the page you visited does not exist",
       },
-      {
-        errorCode: "401",
-        errorImg: error401,
-        errorDescription: "Sorry, you dont have access to this page",
-      },
-      {
-        errorCode: "500",
-        errorImg: error500,
-        errorDescription: "Sorry, the server is reporting an error",
-      },
     ];
 
     let params = new URLSearchParams(this.props.match.params.type);
     const type = params.get("type");
+
     let error = exception.find((x) => x.errorCode === type);
 
     if (error == null) {
@@ -90,7 +79,7 @@ class Exception extends React.Component<any, any> {
             xl={{ span: 24, offset: 0 }}
             xxl={{ span: 24, offset: 0 }}
           >
-            <Button type={"primary"}>
+            <Button style={{ backgroundColor: "#51b3f1", color: "#fff" }}>
               <Link
                 to={{
                   pathname: "/",

@@ -7,6 +7,7 @@ const ProtectedRoute = ({
   render,
   ...rest
 }: any) => {
+  console.log("component", permission);
   return (
     <Route
       {...rest}

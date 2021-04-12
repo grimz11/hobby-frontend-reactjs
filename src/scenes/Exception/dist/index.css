@@ -2,17 +2,15 @@
   height: 360px;
   width: 430px;
 }
-
 .errorTitle {
-  color: rgba(255,255,255, 0.6);
+  color: rgba(255, 255, 255, 0.6);
   font-size: 72px;
   font-weight: 600;
   line-height: 72px;
   margin-bottom: 24px;
 }
-
 .errorDescription {
-  color: rgba(255,255,255, 0.6);
+  color: rgba(255, 255, 255, 0.6);
   font-size: 20px;
   line-height: 28px;
   margin-bottom: 16px;
