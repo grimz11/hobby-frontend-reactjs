@@ -1,6 +1,6 @@
 import "./index.less";
 import { Card, Col, Row } from "antd";
-import CatDTO from "../../../../services/catCollection/dto/catRequestDto";
+import ICatDTO from "../../../../services/catCollection/dto/catRequestDto";
 import { Link, useHistory, useLocation } from "react-router-dom";
 
 import { inject, observer } from "mobx-react";
@@ -41,7 +41,7 @@ const CatLists = inject(Stores.CatCollectionStore)(
             />
           </Link>
         </Col>
-        {data.map((item: CatDTO) => {
+        {data.map((item: ICatDTO) => {
           return (
             <Col
               sm={24}

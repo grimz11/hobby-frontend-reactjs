@@ -1,4 +1,4 @@
-export default interface CatResponseDTO {
+export default interface ICatResponseDTO {
   id?: number;
   age: number;
   name: string;

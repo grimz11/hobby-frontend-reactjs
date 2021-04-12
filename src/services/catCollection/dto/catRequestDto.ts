@@ -1,14 +1,14 @@
-export default interface CatRequestDTO {
+export default interface ICatRequestDTO {
   id?: number;
   age: number;
   name: string;
   description: string;
   photo: string;
-  status: CatStatus;
+  status: ICatStatus;
   breed: string;
 }
 
-export enum CatStatus {
+export enum ICatStatus {
   PUBLISHED = "PUBLISHED",
   UNPUBLISHED = "UNPUBLISHED",
 }

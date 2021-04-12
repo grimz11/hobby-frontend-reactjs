@@ -1,7 +1,7 @@
-import { CatStatus } from "./catRequestDto";
+import { ICatStatus } from "./catRequestDto";
 
-export default interface CatWithFiltersRequestDTO {
-  status: CatStatus;
+export default interface ICatWithFiltersRequestDTO {
+  status: ICatStatus;
   name: string;
   age: number;
   breed: string;

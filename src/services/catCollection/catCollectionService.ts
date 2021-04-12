@@ -1,5 +1,6 @@
 import http from "../httpService";
 import AppConsts from "../../utils/appconst";
+import ICatRequestDTO from "./dto/catRequestDto";
 
 class CatCollectionService {
   async getCats<T>(
@@ -36,6 +37,13 @@ class CatCollectionService {
 
   async updateCat<T>(id: number, payload: T): Promise<Array<T>> {
     const res = await http.patch(`${AppConsts.appBaseUrl}/cats/${id}`, payload);
+    return res.data;
+  }
+
+  async sortCatFields<T>(value: T, name: T): Promise<Array<ICatRequestDTO>> {
+    const res = await http.post(
+      `${AppConsts.appBaseUrl}/cats/sort?${name}::${value}`,
+    );
     return res.data;
   }
 }

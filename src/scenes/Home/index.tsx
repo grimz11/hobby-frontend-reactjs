@@ -6,50 +6,52 @@ import CatLists from "./components/CatLists";
 import CatCollectionStore from "../../stores/catCollectionStore";
 import Stores from "../../stores/storeIdentifier";
 import { SortAscendingOutlined } from "@ant-design/icons";
-import CatDTO from "../../services/catCollection/dto/catRequestDto";
+import ICatDTO from "../../services/catCollection/dto/catRequestDto";
 import CatMenu from "../../components/CatDropdown";
 const { Search } = Input;
 interface ILocalProps {
   catCollectionStore: CatCollectionStore;
 }
-interface ILocalState {
-  catsData: Array<CatDTO>;
-}
+
 @inject(Stores.CatCollectionStore)
 @observer
-class Home extends React.Component<ILocalProps, ILocalState> {
-  state = {
-    catsData: [],
-  };
-
+class Home extends React.Component<ILocalProps, any> {
   async componentDidMount() {
     await this.props.catCollectionStore.getCats();
-    this.setState({ catsData: this.props.catCollectionStore.$catsData });
   }
 
   handleSearch = async (value: string) => {
     if (Boolean(value)) {
       await this.props.catCollectionStore.getCats(value);
-      this.setState({ catsData: this.props.catCollectionStore.$catsData });
     }
   };
 
   render() {
-    const { catsData } = this.state;
+    const { $catsData } = this.props.catCollectionStore;
     const { $filterQueryValue } = this.props.catCollectionStore;
     return (
       <div className="site-layout-content">
         <div className="search-cat">
-          <Dropdown overlay={<CatMenu />} placement="bottomRight" arrow>
+          <Dropdown
+            overlay={<CatMenu type="filter" />}
+            placement="bottomRight"
+            arrow
+          >
             <Search
               placeholder={"Search"}
               onSearch={this.handleSearch}
               type={$filterQueryValue === "age" ? "number" : "text"}
             />
           </Dropdown>
-          <SortAscendingOutlined />
+          <Dropdown
+            overlay={<CatMenu type="sort" />}
+            placement="bottomRight"
+            arrow
+          >
+            <SortAscendingOutlined />
+          </Dropdown>
         </div>
-        <CatLists data={catsData} />
+        <CatLists data={$catsData} />
       </div>
     );
   }
