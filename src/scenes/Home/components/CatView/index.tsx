@@ -23,7 +23,6 @@ class CatView extends React.Component<ILocalProps, ILocalState> {
   };
 
   async componentDidMount() {
-    console.log("CatView", this.props.match.params.id);
     const { id } = this.props.match.params;
     if (id !== "create") {
       await this.props.catCollectionStore.getCatById(parseInt(id));

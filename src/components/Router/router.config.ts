@@ -11,22 +11,17 @@ export const appRouters: any = [
       () => import("../../components/Layout/AppLayout"),
     ),
     isLayout: true,
-    showInMenu: false,
   },
   {
     path: "/home",
     name: "home",
-    permission: "",
     title: "Home",
-    showInMenu: true,
     component: LoadableComponent(() => import("../../scenes/Home")),
   },
   {
     path: "/cat/:id",
     name: "cat",
-    permission: "",
     title: "Cat",
-    showInMenu: true,
     component: LoadableComponent(
       () => import("../../scenes/Home/components/CatView"),
     ),
@@ -34,18 +29,13 @@ export const appRouters: any = [
   {
     path: "/cat/create",
     name: "cat",
-    permission: "",
     title: "Cat",
-    showInMenu: true,
     component: LoadableComponent(() => import("../CatDetail")),
   },
   {
     path: "/exception?:type",
-    permission: "",
-    title: "exception",
+    title: "Exception",
     name: "exception",
-    icon: "info-circle",
-    showInMenu: false,
     component: LoadableComponent(() => import("../../scenes/Exception")),
   },
 ];

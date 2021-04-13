@@ -8,7 +8,6 @@ import DocumentTitle from "react-document-title";
 import Footer from "../../components/Footer";
 import HomeHeader from "../../components/Header";
 import { Layout } from "antd";
-import ProtectedRoute from "../../components/Router/ProtectedRoute";
 import { appRouters } from "../Router/router.config";
 import utils from "../../utils/utils";
 import NotFoundRoute from "../Router/NotFoundRoute";
@@ -37,12 +36,7 @@ class AppLayout extends React.Component<any> {
                   exact
                   key={index}
                   path={route.path}
-                  render={(props) => (
-                    <ProtectedRoute
-                      component={route.component}
-                      permission={route.permission}
-                    />
-                  )}
+                  component={route.component}
                 />
               ))}
             {pathname !== "/" && <NotFoundRoute />}

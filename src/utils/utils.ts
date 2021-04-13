@@ -1,7 +1,4 @@
 import { routers } from "../components/Router/router.config";
-import Cookies from "universal-cookie";
-
-var cookies: any = new Cookies();
 
 class Utils {
   getRoute = (path: string): any => {
@@ -15,19 +12,6 @@ class Utils {
     }
 
     return localizedAppName + " :: " + route[0].title;
-  };
-  setCookie = (name: string, param: any) => {
-    cookies.set(name, param, { path: "/" });
-    return;
-  };
-
-  getCookie = (name: string) => {
-    const res = cookies.get(name);
-    return res;
-  };
-  removeToken = async () => {
-    await cookies.remove("access_token");
-    await cookies.remove("id");
   };
 }
 

@@ -158,6 +158,32 @@ const CatDetail = inject(Stores.CatCollectionStore)(
               }}
             >
               <div className="cat-form-info">
+                <div className="cat-img mobile">
+                  <Form.Item name="photo" rules={[{ required: true }]}>
+                    {data?.photo && !updateState ? (
+                      <Image
+                        className="avatar"
+                        src={`${AppConsts.appBaseUrl}/${data?.photo}`}
+                        style={{
+                          borderRadius: "100%",
+                        }}
+                      />
+                    ) : (
+                      <div>
+                        <ImageUploader
+                          withIcon={false}
+                          maxFileSize={5242880}
+                          imgExtension={[".jpg", ".gif", ".png", ".gif"]}
+                          onChange={(file: any) => setImage(file[0])}
+                          label="Max file size: 5mb, accepted: jpg | gif | png "
+                          singleImage={true}
+                          withPreview
+                        />
+                      </div>
+                    )}
+                  </Form.Item>
+                </div>
+
                 <div className="cat-left-input">
                   <Form.Item name="name" rules={[{ required: true }]}>
                     <Input
@@ -198,7 +224,8 @@ const CatDetail = inject(Stores.CatCollectionStore)(
                     />
                   </Form.Item>
                 </div>
-                <div className="cat-img">
+
+                <div className="cat-img web">
                   <Form.Item name="photo" rules={[{ required: true }]}>
                     {data?.photo && !updateState ? (
                       <Image

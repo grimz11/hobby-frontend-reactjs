@@ -1,6 +1,7 @@
 import AppConsts from "../utils/appconst";
 import { Modal } from "antd";
 import axios from "axios";
+import { Html5TwoTone } from "@ant-design/icons";
 
 const qs = require("qs");
 
@@ -19,6 +20,7 @@ http.interceptors.response.use(
     return response;
   },
   async (error) => {
+    console.log("error", error.response?.data);
     if (error.response?.status === 400) {
       Modal.error({
         title: error.response.data?.error,

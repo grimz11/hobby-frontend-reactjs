@@ -40,13 +40,17 @@
 
     .cat-form-info {
       display: flex;
+
       .cat-left-input {
         width: 70%;
+        margin-right: 15px;
       }
+
       .title {
         font-size: 3em;
         font-weight: 900;
       }
+
       .cat-img {
         margin-left: auto;
         img {
@@ -58,8 +62,87 @@
     
         }
       }
+
+      .mobile {
+        display: none;
+      }
     }
   }
+
+  @media (max-width: 1000px) {
+
+    ul.ant-card-actions {
+      box-sizing: none!important;
+      li {
+        border: 0;
+        width: 100%!important;
+        margin: 7px 0;
+      }
+    }
+
+    .primary, .danger {
+      width: 90%;
+    }
+
+    .cat-form-parent {
+      margin: 10px;
+
+      .cat-form-info {
+        display: block;
+
+        .cat-left-input {
+          width: 100%!important;
+          margin: 0;
+        }
+        .cat-img {
+          margin: 10px auto;
+        }
+        .web {
+          display: none;
+        }
+
+        .mobile {
+          display: block;
+          div {
+            width: 100%!important;
+          }
+          img {
+            margin: 0 auto;
+            display: block;
+            width: 220px;
+            height: 220px;
+          }
+        }
+      }
+    }
+  } 
+
+  @media (max-width: 712px) {
+    .cat-form-parent {
+      .cat-form-info {
+        .mobile {
+          img {
+            width: 180px!important;
+            height: 180px!important;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 486px) {
+    .cat-form-parent {
+      .cat-form-info {
+        .mobile {
+          img {
+            width: 120px!important;
+            height: 120px!important;
+          }
+        }
+      }
+    }
+  }
+
   .ant-image-mask:hover {
     opacity: 1;
     border-radius: 50%;
@@ -82,5 +165,18 @@
       border: unset;
       position: relative;
    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .cat-parent {
+    width: 80%;
+  }
+}
+
+
+@media (max-width: 712px) {
+  .cat-parent {
+    width: 95%;
   }
 }
