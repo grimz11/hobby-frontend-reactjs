@@ -48,9 +48,7 @@ class AppLayout extends React.Component<any> {
             {pathname !== "/" && <NotFoundRoute />}
           </Switch>
         </Content>
-        {/* <Layout.Footer className="site-layout-background">
-          
-        </Layout.Footer> */}
+
         <Footer />
       </Layout>
     );

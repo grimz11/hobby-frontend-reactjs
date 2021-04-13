@@ -6,7 +6,6 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 import { inject, observer } from "mobx-react";
 import Stores from "../../../../stores/storeIdentifier";
 import CatCollectionStore from "../../../../stores/catCollectionStore";
-import React from "react";
 import { PlusCircleOutlined } from "@ant-design/icons";
 import AppConsts from "../../../../utils/appconst";
 
@@ -41,7 +40,7 @@ const CatLists = inject(Stores.CatCollectionStore)(
             />
           </Link>
         </Col>
-        {data.map((item: ICatDTO) => {
+        {data?.map((item: ICatDTO) => {
           return (
             <Col
               sm={24}

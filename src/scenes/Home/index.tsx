@@ -8,6 +8,7 @@ import Stores from "../../stores/storeIdentifier";
 import { SortAscendingOutlined } from "@ant-design/icons";
 import ICatDTO from "../../services/catCollection/dto/catRequestDto";
 import CatMenu from "../../components/CatDropdown";
+import { toJS } from "mobx";
 const { Search } = Input;
 interface ILocalProps {
   catCollectionStore: CatCollectionStore;
@@ -29,6 +30,7 @@ class Home extends React.Component<ILocalProps, any> {
   render() {
     const { $catsData } = this.props.catCollectionStore;
     const { $filterQueryValue } = this.props.catCollectionStore;
+    console.log("$catsData", toJS($catsData));
     return (
       <div className="site-layout-content">
         <div className="search-cat">

@@ -27,7 +27,7 @@ class CatCollectionStore {
 
   async createCat(payload: any): Promise<void> {
     const res = await catCollectionService.createCat<any>(payload);
-    this.$catsData = res;
+    this.$cat = res;
   }
 
   async deleteCat(id: number): Promise<void> {
